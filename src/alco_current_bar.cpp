@@ -1,4 +1,4 @@
-#include "src\include\alco_current_bar.h"
+#include "alco_current_bar.h"
 #include "ui_alco_current_bar.h"
 
 AlcoCurrentBar::AlcoCurrentBar(const AlcoMap& map, QWidget* parent)

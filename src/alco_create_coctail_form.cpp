@@ -1,4 +1,4 @@
-#include "src\include\alco_create_coctail_form.h"
+#include "alco_create_coctail_form.h"
 #include "ui_alco_create_coctail_form.h"
 
 AlcoCreateCoctailForm::AlcoCreateCoctailForm(const AlcoMap& map, AlcoCoctail _coctail, QWidget* parent)

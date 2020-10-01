@@ -1,4 +1,4 @@
-#include "include\alco_tablewidget.h"
+#include "alco_tablewidget.h"
 
 AlcoTable::AlcoTable(const QString& type, QWidget* par)
     : QWidget(par)

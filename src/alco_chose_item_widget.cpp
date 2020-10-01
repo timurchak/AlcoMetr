@@ -1,4 +1,4 @@
-#include "src\include\alco_chose_item_widget.h"
+#include "alco_chose_item_widget.h"
 #include "ui_alco_chose_item_widget.h"
 
 AlcoChoseItemWidget::AlcoChoseItemWidget(const AlcoMap& map, QWidget *parent) :
