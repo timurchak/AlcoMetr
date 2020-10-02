@@ -69,7 +69,15 @@ QString AlcoItem::toString()
         .arg(data.name)
         .arg(data.company)
         .arg(data.volume)
-            .arg(data.volumeBottle);
+    .arg(data.volumeBottle);
+}
+
+QString AlcoItem::toShortString()
+{
+    return QString("%1|%2|%3\n")
+        .arg(typeAlco)
+        .arg(data.name)
+        .arg(data.volume);
 }
 
 void AlcoItem::companyChange(QString)

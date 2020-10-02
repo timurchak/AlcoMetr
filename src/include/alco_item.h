@@ -5,6 +5,7 @@
 #include <QLineEdit>
 #include <QObject>
 #include <QSpinBox>
+#include <QTextStream>
 #include <string>
 
 struct AlcoLine {
@@ -23,6 +24,7 @@ class AlcoItem : public QObject {
 public:
     AlcoItem(AlcoLine line, const QString& type, QObject* par = nullptr);
     QString toString();
+    QString toShortString();
     AlcoLine* getData();
     void reloadData();
 public slots:
@@ -49,7 +51,20 @@ struct AlcoCoctail {
     QString name;
     AlcoList items;
     QString about;
+    QString typeCoctail;
     bool valid = false;
     friend bool operator==(const AlcoCoctail& lhs, const AlcoCoctail& rhs) { return lhs.name == rhs.name; }
+    QStringList toString()
+    {
+        QStringList list;
+        list << "Start Coctail: " + name + "\n";
+        list << "about: " + about + "\n";
+        list << "typeCoctail: " + typeCoctail + "\n";
+        list << "count items: " + QString::number(items.count()) + "\n";
+        for (auto const& item : qAsConst(items)) {
+            list << item->toShortString();
+        }        
+        return list;
+    }
 };
 #endif // ALCOITEM_H

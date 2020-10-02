@@ -5,6 +5,7 @@
 #include <QListWidgetItem>
 #include <alco_create_coctail_form.h>
 #include <alco_item.h>
+#include <alco_coctails_save_worker.h>
 
 namespace Ui {
 class AlcoCocktailManager;
@@ -24,6 +25,7 @@ private slots:
     void on_Btn_addCoctail_clicked();
     void addCoctail(AlcoCoctail coctail);
     void showCreateCoctail(const AlcoCoctail& coctail);
+    void saveAll();
 
     void on_Coctail_list_doubleClicked(const QModelIndex &index);
 
@@ -32,6 +34,7 @@ private:
     AlcoMap alcoList;
     AlcoMap* alcoCurrentList;
     QList<AlcoCoctail> list;
+    AlcoCoctailsSaveWorker* saver;
 };
 
 #endif // ALCO_COCKTAIL_MANAGER_H

@@ -52,6 +52,20 @@
       </layout>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="Lay_typeCoctail">
+       <item>
+        <widget class="QLabel" name="D_typeCoctail">
+         <property name="text">
+          <string>Тип коктейля</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QComboBox" name="W_typeCoctail"/>
+       </item>
+      </layout>
+     </item>
+     <item>
       <widget class="QLabel" name="D_about">
        <property name="text">
         <string>Описание</string>

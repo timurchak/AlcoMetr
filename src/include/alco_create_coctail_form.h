@@ -30,6 +30,8 @@ private slots:
 
     void on_textEdit_textChanged();
 
+    void on_W_typeCoctail_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::AlcoCreateCoctailForm *ui;
     AlcoMap alcoList;

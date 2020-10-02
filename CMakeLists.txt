@@ -29,7 +29,8 @@ set(${PROJECT_NAME}_SRC
     src/alco_cocktail_manager.cpp    
     src/alco_create_coctail_form.cpp
     src/alco_current_bar.cpp    
-    src/alco_chose_item_widget.cpp
+    src/alco_chose_item_widget.cpp    
+    src/alco_coctails_save_worker.cpp
 
 
 )
@@ -45,6 +46,7 @@ set(${PROJECT_NAME}_HDR
     src/include/alco_create_coctail_form.h
     src/include/alco_current_bar.h
     src/include/alco_chose_item_widget.h
+    src/include/alco_coctails_save_worker.h
 )
 
 set(${PROJECT_NAME}_FORMS_UI

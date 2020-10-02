@@ -11,15 +11,18 @@ AlcoCreateCoctailForm::AlcoCreateCoctailForm(const AlcoMap& map, AlcoCoctail _co
     ui->table->setColumnCount(2);
     ui->table->setHorizontalHeaderLabels(QStringList() << "Название алкоголя"
                                                        << "Объем");
-
+    ui->W_typeCoctail->addItems(QStringList() << "Лонг дринк"
+                                              << "Хот дринк"
+                                              << "Шорт дринк"
+                                              << "Шот");
+    ui->W_typeCoctail->setCurrentIndex(0);
     ui->table->resizeColumnsToContents();
-    if(coctail.valid) {
-        for(auto& item : coctail.items) {
+    if (coctail.valid) {
+        for (auto& item : coctail.items) {
             addItem(item);
-
         }
-         ui->W_name->setText(coctail.name);
-         ui->textEdit->setText(coctail.about);
+        ui->W_name->setText(coctail.name);
+        ui->textEdit->setText(coctail.about);
     }
 }
 
@@ -29,7 +32,7 @@ void AlcoCreateCoctailForm::addItem(const QString& type, const QString& name)
 {
     AlcoItem* item = new AlcoItem({ name, "", 0, 0 }, type);
     addItem(item);
-    //sender()->deleteLater();
+    // sender()->deleteLater();
     coctail.items << item;
 }
 
@@ -49,20 +52,20 @@ void AlcoCreateCoctailForm::on_Btn_addItem_clicked()
     w->show();
     connect(w, &AlcoChoseItemWidget::choise, this,
         QOverload<const QString&, const QString&>::of(&AlcoCreateCoctailForm::addItem));
-   // connect(w, &AlcoChoseItemWidget::finished, w, &AlcoChoseItemWidget::deleteLater);
+    // connect(w, &AlcoChoseItemWidget::finished, w, &AlcoChoseItemWidget::deleteLater);
 }
 
-void AlcoCreateCoctailForm::on_Btn_Save_clicked() {
+void AlcoCreateCoctailForm::on_Btn_Save_clicked()
+{
     emit changeCoctail(coctail);
-    //this->close();
+    this->close();
 }
 
-void AlcoCreateCoctailForm::on_W_name_textChanged(const QString &arg1)
-{
-    coctail.name = arg1;
-}
+void AlcoCreateCoctailForm::on_W_name_textChanged(const QString& arg1) { coctail.name = arg1; }
 
-void AlcoCreateCoctailForm::on_textEdit_textChanged()
+void AlcoCreateCoctailForm::on_textEdit_textChanged() { coctail.about = ui->textEdit->toPlainText(); }
+
+void AlcoCreateCoctailForm::on_W_typeCoctail_currentIndexChanged(const QString& arg1)
 {
-    coctail.about = ui->textEdit->toPlainText();
+    coctail.typeCoctail = arg1;
 }

@@ -29,7 +29,7 @@ QMap<QString, QStringList> ParseInShaker::parseHTML(const QString& path)
                                     "div", "div", "class", "search-results goods common-content", &reader)) {
                                 qDebug() << reader.name()
                                          << "search div class search-results goods common-content, start:";
-                                while(!reader.atEnd()) {
+                                while (!reader.atEnd()) {
                                     searchGroup(&reader, &map);
                                 }
                             }
@@ -81,22 +81,22 @@ bool ParseInShaker::parseHTMLElement(const QString& elemnt, const QString& next,
     return false;
 }
 
-QStringList ParseInShaker::parseHTMLGroup(QXmlStreamReader *reader)
+QStringList ParseInShaker::parseHTMLGroup(QXmlStreamReader* reader)
 {
     QStringList list;
 
-    while(!reader->atEnd()) {
+    while (!reader->atEnd()) {
         reader->readNext();
-        if(reader->isEndElement()) {
+        if (reader->isEndElement()) {
             if (reader->name() == "ul") {
                 return list;
             }
         }
-        if(reader->isStartElement()) {
+        if (reader->isStartElement()) {
             if (reader->name() == "li") {
-                while(!reader->atEnd()) {
+                while (!reader->atEnd()) {
                     reader->readNext();
-                    if(reader->name() == "div" && reader->attributes().value("class") == "name") {
+                    if (reader->name() == "div" && reader->attributes().value("class") == "name") {
                         list << reader->readElementText();
                         break;
                     }
@@ -107,19 +107,17 @@ QStringList ParseInShaker::parseHTMLGroup(QXmlStreamReader *reader)
     return list;
 }
 
-void ParseInShaker::searchGroup(QXmlStreamReader *reader, QMap<QString, QStringList>* map)
+void ParseInShaker::searchGroup(QXmlStreamReader* reader, QMap<QString, QStringList>* map)
 {
     QString groupName = "";
     if (parseHTMLElement("div", "dl", "class", "group", reader)) {
         qDebug() << reader->name() << "search dl class group, start:";
         if (parseHTMLElement("dl", "dt", "class", "head js-all-items", reader)) {
             groupName = reader->readElementText();
-            qDebug()
-                << reader->name() << "search dt class head js-all-items, text:"
-                << groupName;
-            if(parseHTMLElement("dl", "dt", "class", "body", reader)) {
+            qDebug() << reader->name() << "search dt class head js-all-items, text:" << groupName;
+            if (parseHTMLElement("dl", "dt", "class", "body", reader)) {
                 qDebug() << reader->name() << "search dt class body, start:";
-                if(parseHTMLElement("dt", "ul", "class", "list", reader)) {
+                if (parseHTMLElement("dt", "ul", "class", "list", reader)) {
                     qDebug() << reader->name() << "search ul class list, start:";
                     map->operator[](groupName) = parseHTMLGroup(reader);
                     return;
@@ -154,17 +152,17 @@ void ParseInShaker::finishRead(QNetworkReply* reply)
     }
 }
 
-void ParseInShaker::save(QMap<QString, QStringList> &map)
+void ParseInShaker::save(QMap<QString, QStringList>& map)
 {
     QFile file("alco.list");
-    if(file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream ts(&file);
         ts.setCodec("Windows-1251");
         auto it = map.begin();
-        while(it != map.end()) {
-            ts << "==" + it.key() + "==" << endl;
+        while (it != map.end()) {
+            ts << "==" + it.key() + "==" << Qt::endl;
             for(auto const& item : it.value()) {
-                ts << item << endl;
+                ts << item << Qt::endl;
             }
             ++it;
         }
