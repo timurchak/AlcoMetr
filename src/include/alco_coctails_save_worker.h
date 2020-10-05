@@ -1,20 +1,24 @@
 #ifndef ALCOCOCTAILSSAVEWORKER_H
 #define ALCOCOCTAILSSAVEWORKER_H
 
-#include <alco_item.h>
+#include <QDebug>
+#include <QDir>
 #include <QFile>
+#include <QStandardPaths>
 #include <QTextStream>
 
+#include <alco_item.h>
 
-class AlcoCoctailsSaveWorker
-{
+class AlcoCoctailsSaveWorker {
 public:
-    AlcoCoctailsSaveWorker(const QString& name = "coctail.base");
-    void setList(QList<AlcoCoctail> *value);
+    AlcoCoctailsSaveWorker(
+        const QString& name = QStandardPaths::standardLocations(QStandardPaths::DataLocation).first()
+            + QDir().separator() + "coctails.save");
+    void setList(QList<AlcoCoctail>* value);
     void readSave();
     void saveList();
 
-    QList<AlcoCoctail> *getList() const;
+    QList<AlcoCoctail>* getList() const;
 
 private:
     QString fileName;

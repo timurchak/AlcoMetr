@@ -11,13 +11,20 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Коктейльный менеджер</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QPushButton" name="Btn_addCoctail">
      <property name="text">
       <string>Добавить коктейль</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="pushButton">
+     <property name="text">
+      <string>Удалить коктейль</string>
      </property>
     </widget>
    </item>

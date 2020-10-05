@@ -4,6 +4,7 @@ AlcoCoctailsSaveWorker::AlcoCoctailsSaveWorker(const QString& name)
     : fileName(name)
     , save(new QFile(fileName))
 {
+    qDebug() << "Path to save current coctails:" << fileName;
 }
 
 void AlcoCoctailsSaveWorker::setList(QList<AlcoCoctail>* value) { list = value; }
@@ -15,34 +16,41 @@ void AlcoCoctailsSaveWorker::readSave()
         ts.setCodec("Windows-1251");
         list->clear();
         while (!ts.atEnd()) {
-            auto splitStart = ts.readLine().split(" ", Qt::SkipEmptyParts);
+            QString start = ts.readLine();
+            auto splitStart = start.split(" ", Qt::SkipEmptyParts);
             if (splitStart.size() < 3) {
                 save->close();
                 return;
             }
             if (splitStart[0] == "Start") {
-                QString name = splitStart[2];
+                QString name = start.split(": ", Qt::SkipEmptyParts)[1];
                 QString about = "";
                 QString typeCoctail = "";
                 int count = 0;
-                auto splitAbout = ts.readLine().split(" ", Qt::SkipEmptyParts);
+                auto splitAbout = ts.readLine().split(": ", Qt::SkipEmptyParts);
 
-                if (splitAbout[0] == "about:") {
+                if (splitAbout[0] == "about") {
                     if (splitAbout.size() < 2) {
                         about = "None";
                     } else {
-                        about = splitAbout[1];
+                        about+= splitAbout[1] + "\n";
                     }
                 } else {
                     save->close();
                     return;
                 }
-                auto splitType = ts.readLine().split(" ", Qt::SkipEmptyParts);
+                QString searchType = ts.readLine();
+                auto splitType = searchType.split(": ", Qt::SkipEmptyParts);
+                while(splitType.isEmpty() || splitType[0] != "typeCoctail") {
+                    about += searchType + "\n";
+                    searchType = ts.readLine();
+                    splitType = searchType.split(": ", Qt::SkipEmptyParts);
+                }
                 if (splitType.size() < 2) {
                     save->close();
                     return;
                 }
-                if (splitType[0] == "typeCoctail:") {
+                if (splitType[0] == "typeCoctail") {
                     typeCoctail = splitType[1];
                 } else {
                     save->close();

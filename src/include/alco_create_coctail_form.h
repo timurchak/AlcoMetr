@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QComboBox>
 #include <QDebug>
+#include <QSignalBlocker>
+
 #include <alco_item.h>
 #include <alco_chose_item_widget.h>
 
@@ -16,7 +18,7 @@ class AlcoCreateCoctailForm : public QDialog
     Q_OBJECT
 
 public:
-    explicit AlcoCreateCoctailForm(const AlcoMap& map, AlcoCoctail _coctail, QWidget *parent = nullptr);
+    explicit AlcoCreateCoctailForm(const AlcoMap& map, AlcoCoctail* _coctail, QWidget *parent = nullptr);
     ~AlcoCreateCoctailForm();
     void addItem(const QString& type, const QString& name);
     void addItem(AlcoItem* item);
@@ -35,9 +37,9 @@ private slots:
 private:
     Ui::AlcoCreateCoctailForm *ui;
     AlcoMap alcoList;
-    AlcoCoctail coctail;
+    AlcoCoctail* coctail;
 signals:
-    void changeCoctail(AlcoCoctail);
+    void changeCoctail(AlcoCoctail*);
 };
 
 #endif // ALCO_CREATE_COCTAIL_FORM_H

@@ -6,6 +6,7 @@ AlcoSaveWorker::AlcoSaveWorker(const QString &name, QObject *par)
     , nameSave(name)
     , save(new QFile(name))
 {
+    qDebug() << "Path to save current alco:" << nameSave;
 
 }
 

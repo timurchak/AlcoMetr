@@ -31,12 +31,21 @@ private slots:
 
     void on_Btn_OpenCoctailManager_clicked();
 
+    void on_Btn_Chose_clicked();
+
+    void on_W_typeCoctail_currentIndexChanged(const QString &arg1);
+
+    void on_Btn_CreateCoctail_clicked();
+
+    int searchItem(AlcoItem* item);
+
 private:
     Ui::MainWindow* ui;    
     AlcoBaseWorker* base;
     AlcoMap allAlc;
     AlcoCurrentBar* bar;
     AlcoCocktailManager* manager;
+    QList<AlcoCoctail>* listCoctails;
 
 };
 #endif // MAINWINDOW_H

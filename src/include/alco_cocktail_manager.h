@@ -18,16 +18,17 @@ public:
     explicit AlcoCocktailManager(const AlcoMap& map, AlcoMap* cmap, QWidget* parent = nullptr);
     ~AlcoCocktailManager();
 
-    AlcoMap* getBase();
-    void setBase(AlcoMap* value);
+    QList<AlcoCoctail> *getCoctailsList();
 
 private slots:
     void on_Btn_addCoctail_clicked();
-    void addCoctail(AlcoCoctail coctail);
-    void showCreateCoctail(const AlcoCoctail& coctail);
+    void addCoctail(AlcoCoctail *coctail);
+    void showCreateCoctail(AlcoCoctail *_coctail);
     void saveAll();
-
+    void reload();
     void on_Coctail_list_doubleClicked(const QModelIndex &index);
+
+    void on_pushButton_clicked();
 
 private:
     Ui::AlcoCocktailManager* ui;
