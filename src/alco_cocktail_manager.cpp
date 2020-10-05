@@ -33,7 +33,7 @@ QList<AlcoCoctail>* AlcoCocktailManager::getCoctailsList()
     return &list;
 }
 
-void AlcoCocktailManager::on_Btn_addCoctail_clicked() { showCreateCoctail({}); }
+void AlcoCocktailManager::on_Btn_addCoctail_clicked() { showCreateCoctail(new AlcoCoctail({})); }
 
 void AlcoCocktailManager::addCoctail(AlcoCoctail* _coctail)
 {
