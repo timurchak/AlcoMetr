@@ -1,19 +1,22 @@
 #include "alco_current_bar.h"
 #include "ui_alco_current_bar.h"
 
-AlcoCurrentBar::AlcoCurrentBar(const AlcoMap& map, QWidget* parent)
+AlcoCurrentBar::AlcoCurrentBar(AlcoMap* map, QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::AlcoCurrentBar)
     , saver(new AlcoSaveWorker())
     , alcoList(map)
+    , lay(new QDynamicGridLayout(2))
 {
     ui->setupUi(this);
-    auto it = alcoList.begin();
-    while (it != alcoList.end()) {
+    auto it = alcoList->begin();
+    while (it != alcoList->end()) {
         // std::sort(it.value().begin(), it.value().end(), variantLessThan);
         ui->W_typeAlc->addItem(it.key());
         ++it;
     }
+    ui->Lay_main->addLayout(lay);
+    lay->setHorizontalSpacing(2);
     readSaveFile();
 }
 
@@ -21,18 +24,25 @@ AlcoCurrentBar::~AlcoCurrentBar() { delete ui; }
 
 void AlcoCurrentBar::on_Btn_Add_clicked()
 {
-    if (!tables.contains(ui->W_typeAlc->currentText())) {
-        tables[ui->W_typeAlc->currentText()] = addTable(ui->W_typeAlc->currentText());
+    QString type = ui->W_typeAlc->currentText();
+    auto item = new AlcoItem({ ui->W_choseAlc->currentText(), "", 0, 0 }, type);
+    if (!currentMap->contains(type)) {
+        currentMap->operator[](type) = AlcoList();
     }
-    auto item = new AlcoItem({ ui->W_choseAlc->currentText(), "", 0, 0 }, ui->W_typeAlc->currentText());
-    tables[ui->W_typeAlc->currentText()]->addItem(item);
+    if (!tables.contains(type)) {
+        tables[type] = addTable(type);
+        tables[type]->setList(&currentMap->operator[](type));
+    }
+
+    currentMap->operator[](type) << item;
+    tables[type]->addItem(item);
 }
 
 void AlcoCurrentBar::on_W_typeAlc_currentIndexChanged(const QString& arg1)
 {
-    if (alcoList.contains(arg1)) {
+    if (alcoList->contains(arg1)) {
         ui->W_choseAlc->clear();
-        for (auto& item : alcoList[arg1]) {
+        for (auto& item : alcoList->value(arg1)) {
             ui->W_choseAlc->addItem(item->getData()->name);
         }
     }
@@ -61,9 +71,7 @@ void AlcoCurrentBar::reloadAlco()
     while (it != currentMap->end()) {
         auto table = addTable(it.key());
         tables[it.key()] = table;
-        for (auto const& item : it.value()) {
-            table->addItem(item);
-        }
+        table->setList(&it.value());
         ++it;
     }
 }
@@ -71,12 +79,9 @@ void AlcoCurrentBar::reloadAlco()
 AlcoTable* AlcoCurrentBar::addTable(const QString& name)
 {
     AlcoTable* table = new AlcoTable(name);
-    if (countShowTable % 2 == 0) {
-        ui->Lay_Left->insertWidget(ui->Lay_Left->count() - 1, table);
-    } else {
-        ui->Lay_Right->insertWidget(ui->Lay_Right->count() - 1, table);
-    }
-    countShowTable++;
+
+    lay->add(table);
+
     return table;
 }
 

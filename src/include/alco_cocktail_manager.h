@@ -15,7 +15,7 @@ class AlcoCocktailManager : public QWidget {
     Q_OBJECT
 
 public:
-    explicit AlcoCocktailManager(const AlcoMap& map, AlcoMap* cmap, QWidget* parent = nullptr);
+    explicit AlcoCocktailManager(AlcoMap* map, AlcoMap* cmap, QWidget* parent = nullptr);
     ~AlcoCocktailManager();
 
     QList<AlcoCoctail> *getCoctailsList();
@@ -32,7 +32,7 @@ private slots:
 
 private:
     Ui::AlcoCocktailManager* ui;
-    AlcoMap alcoList;
+    AlcoMap* alcoList;
     AlcoMap* alcoCurrentList;
     QList<AlcoCoctail> list;
     AlcoCoctailsSaveWorker* saver;

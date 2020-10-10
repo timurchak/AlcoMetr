@@ -1,7 +1,7 @@
 #include "alco_cocktail_manager.h"
 #include "ui_alco_cocktail_manager.h"
 
-AlcoCocktailManager::AlcoCocktailManager(const AlcoMap& map, AlcoMap* cmap, QWidget* parent)
+AlcoCocktailManager::AlcoCocktailManager(AlcoMap *map, AlcoMap* cmap, QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::AlcoCocktailManager)
     , alcoList(map)

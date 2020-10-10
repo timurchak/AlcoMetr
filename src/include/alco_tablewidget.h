@@ -17,9 +17,12 @@ class AlcoTable : public QWidget
 public:
     AlcoTable(const QString& type, QWidget *par = nullptr);
     void addItem(AlcoItem *item);
-    void addItems(const QList<AlcoItem*> &list);
-    QList<AlcoItem *> getList();
+    void setList(AlcoList* list);
+    AlcoList *getList();
     void deleteRow();
+    void reload();
+private:
+
 private:
     QString typeAlco;
     QTableWidget* table;
@@ -27,7 +30,7 @@ private:
     QPushButton* btnDelte;
     QHBoxLayout* layOthers;
     QVBoxLayout* layMain;
-    QList<AlcoItem*> data;
+    AlcoList* data;
 };
 
 #endif // ALCOTABLEWIDGET_H

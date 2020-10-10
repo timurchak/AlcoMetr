@@ -4,10 +4,11 @@
 MainWindow::MainWindow(QWidget* parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , base(new AlcoBaseWorker(":/rsc/alco.list"))
+    , base(new AlcoBaseWorker())
     , allAlc(base->getMapAlco())
     , bar(new AlcoCurrentBar(allAlc))
     , manager(new AlcoCocktailManager(allAlc, bar->getCurrentMap()))
+    , editBase(new AlcoEditBase(base))
     , listCoctails(manager->getCoctailsList())
 {
     ui->setupUi(this);
@@ -122,4 +123,14 @@ int MainWindow::searchItem(AlcoItem* item)
         }
     }
     return -1;
+}
+
+void MainWindow::on_Btn_EditBase_clicked()
+{
+    if (editBase->isHidden()) {
+        editBase->show();
+    } else {
+        editBase->raise();
+        editBase->activateWindow();
+    }
 }

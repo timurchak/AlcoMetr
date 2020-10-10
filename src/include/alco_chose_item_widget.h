@@ -14,7 +14,7 @@ class AlcoChoseItemWidget : public QDialog
     Q_OBJECT
 
 public:
-    explicit AlcoChoseItemWidget(const AlcoMap& map, QWidget *parent = nullptr);
+    explicit AlcoChoseItemWidget(AlcoMap* map, QWidget *parent = nullptr);
     ~AlcoChoseItemWidget();
 
 private slots:
@@ -24,7 +24,7 @@ private slots:
 
 private:
     Ui::AlcoChoseItemWidget *ui;
-    AlcoMap alcoList;
+    AlcoMap* alcoList;
 signals:
     void choise(const QString&, const QString&);
 };

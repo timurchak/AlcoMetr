@@ -18,7 +18,7 @@ class AlcoCreateCoctailForm : public QDialog
     Q_OBJECT
 
 public:
-    explicit AlcoCreateCoctailForm(const AlcoMap& map, AlcoCoctail* _coctail, QWidget *parent = nullptr);
+    explicit AlcoCreateCoctailForm(AlcoMap* map, AlcoCoctail* _coctail, QWidget *parent = nullptr);
     ~AlcoCreateCoctailForm();
     void addItem(const QString& type, const QString& name);
     void addItem(AlcoItem* item);
@@ -36,7 +36,7 @@ private slots:
 
 private:
     Ui::AlcoCreateCoctailForm *ui;
-    AlcoMap alcoList;
+    AlcoMap* alcoList;
     AlcoCoctail* coctail;
 signals:
     void changeCoctail(AlcoCoctail*);

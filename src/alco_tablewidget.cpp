@@ -16,6 +16,7 @@ AlcoTable::AlcoTable(const QString& type, QWidget* par)
     layMain->setContentsMargins(0, 0, 0, 0);
     layMain->setSpacing(2);
     tittle->setText(typeAlco);
+    tittle->setAlignment(Qt::AlignCenter);
     layOthers->addWidget(tittle);
     layOthers->addWidget(btnDelte);
     layMain->addLayout(layOthers);
@@ -44,22 +45,28 @@ void AlcoTable::addItem(AlcoItem* item)
     table->resizeRowsToContents();
     //table->setMinimumHeight((row + 1) * 30 + 40);
     //table->setMaximumHeight((row + 1) * 30 + 40);
-    data.push_back(item);
 
 }
 
-void AlcoTable::addItems(const QList<AlcoItem*>& list)
+void AlcoTable::setList(AlcoList *list)
 {
-    for (auto const& item : qAsConst(list)) {
-        addItem(item);
-    }
+    data = list;
+    reload();
 }
 
-QList<AlcoItem*> AlcoTable::getList() { return data; }
+AlcoList* AlcoTable::getList() { return data; }
 
 void AlcoTable::deleteRow()
 {
     int row = table->currentRow();
     table->removeRow(row);
-    data.removeAt(row);
+    data->removeAt(row);
 }
+
+void AlcoTable::reload()
+{
+    for (auto const& item : *qAsConst(data)) {
+        addItem(item);
+    }
+}
+

@@ -1,14 +1,14 @@
 #include "alco_chose_item_widget.h"
 #include "ui_alco_chose_item_widget.h"
 
-AlcoChoseItemWidget::AlcoChoseItemWidget(const AlcoMap& map, QWidget *parent) :
+AlcoChoseItemWidget::AlcoChoseItemWidget(AlcoMap *map, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AlcoChoseItemWidget)
     , alcoList(map)
 {
     ui->setupUi(this);
-    auto it = alcoList.begin();
-    while (it != alcoList.end()) {
+    auto it = alcoList->begin();
+    while (it != alcoList->end()) {
         ui->W_typeAlco->addItem(it.key());
         ++it;
     }
@@ -27,9 +27,9 @@ void AlcoChoseItemWidget::on_Btn_Ok_clicked()
 
 void AlcoChoseItemWidget::on_W_typeAlco_currentIndexChanged(const QString &arg1)
 {
-    if (alcoList.contains(arg1)) {
+    if (alcoList->contains(arg1)) {
         ui->W_nameAlco->clear();
-        for (auto& item : alcoList[arg1]) {
+        for (auto& item : alcoList->value(arg1)) {
             ui->W_nameAlco->addItem(item->getData()->name);
         }
     }

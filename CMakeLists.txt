@@ -10,11 +10,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
+find_package(QTimWidgets REQUIRED)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/gui
-    ${CMAKE_CURRENT_SOURCE_DIR}/src/include    
+    ${CMAKE_CURRENT_SOURCE_DIR}/src/include
+    $<TARGET_PROPERTY:QTimWidgets,INTERFACE_INCLUDE_DIRECTORIES>
     ${QT_INCLUDES}    
     ${${PROJECT_NAME}_OPT_INCLUDE_DIRS}    
     )
@@ -30,10 +32,9 @@ set(${PROJECT_NAME}_SRC
     src/alco_create_coctail_form.cpp
     src/alco_current_bar.cpp    
     src/alco_chose_item_widget.cpp    
-    src/alco_coctails_save_worker.cpp
-
-
-)
+    src/alco_coctails_save_worker.cpp    
+    src/alco_edit_base.cpp
+    )
 
 set(${PROJECT_NAME}_HDR	
     src/include/mainwindow.h 
@@ -47,6 +48,7 @@ set(${PROJECT_NAME}_HDR
     src/include/alco_current_bar.h
     src/include/alco_chose_item_widget.h
     src/include/alco_coctails_save_worker.h
+    src/include/alco_edit_base.h
 )
 
 set(${PROJECT_NAME}_FORMS_UI
@@ -55,6 +57,7 @@ set(${PROJECT_NAME}_FORMS_UI
     gui/alco_create_coctail_form.ui
     gui/alco_current_bar.ui
     gui/alco_chose_item_widget.ui
+    gui/alco_edit_base.ui
 )
 
 set(${PROJECT_NAME}_Qt_Resource_files
@@ -86,5 +89,6 @@ target_link_libraries(${TARGET_EXE}
     ${${PROJECT_NAME}_OPT_LIBS}
     Qt5::Widgets
     Qt5::Core       
-    Qt5::Network   
+    Qt5::Network
+    QTimWidgets
     )

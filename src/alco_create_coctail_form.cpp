@@ -1,7 +1,7 @@
 #include "alco_create_coctail_form.h"
 #include "ui_alco_create_coctail_form.h"
 
-AlcoCreateCoctailForm::AlcoCreateCoctailForm(const AlcoMap& map, AlcoCoctail* _coctail, QWidget* parent)
+AlcoCreateCoctailForm::AlcoCreateCoctailForm(AlcoMap *map, AlcoCoctail* _coctail, QWidget* parent)
     : QDialog(parent)
     , ui(new Ui::AlcoCreateCoctailForm)
     , alcoList(map)

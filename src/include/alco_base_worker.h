@@ -6,19 +6,27 @@
 #include <QString>
 #include <QStringList>
 #include <QTextStream>
+#include <QStandardPaths>
+#include <QDir>
 
 #include <alco_item.h>
 
 class AlcoBaseWorker {
 public:
-    AlcoBaseWorker(const QString& name);
+    AlcoBaseWorker(const QString& _name = QStandardPaths::standardLocations(QStandardPaths::DataLocation).first()
+                                         + QDir().separator() + "alco.list");
+    void readBase(const QString &name);
+
     void readBase();
 
-    AlcoMap getMapAlco() const;
+    void saveBase();
+
+    AlcoMap *getMapAlco();
 
 private:
+    QString name;
     QFile* base;
-    AlcoMap mapAlco;
+    AlcoMap* mapAlco;
 };
 
 #endif // ALCOBASEWORKER_H

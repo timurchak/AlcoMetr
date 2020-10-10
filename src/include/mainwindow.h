@@ -5,6 +5,7 @@
 #include <alco_item.h>
 #include <alco_current_bar.h>
 #include <alco_cocktail_manager.h>
+#include <alco_edit_base.h>
 
 #include <QLabel>
 #include <QLineEdit>
@@ -39,12 +40,15 @@ private slots:
 
     int searchItem(AlcoItem* item);
 
+    void on_Btn_EditBase_clicked();
+
 private:
     Ui::MainWindow* ui;    
     AlcoBaseWorker* base;
-    AlcoMap allAlc;
+    AlcoMap* allAlc;
     AlcoCurrentBar* bar;
     AlcoCocktailManager* manager;
+    AlcoEditBase* editBase;
     QList<AlcoCoctail>* listCoctails;
 
 };

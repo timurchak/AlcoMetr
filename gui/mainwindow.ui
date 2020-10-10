@@ -34,6 +34,13 @@
         </property>
        </widget>
       </item>
+      <item>
+       <widget class="QPushButton" name="Btn_EditBase">
+        <property name="text">
+         <string>Редактировать базу напитков</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </item>
     <item>
