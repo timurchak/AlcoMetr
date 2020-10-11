@@ -27,6 +27,8 @@ public:
     QString toShortString();
     AlcoLine* getData();
     void reloadData();
+    QString getTypeAlco() const;
+    void setTypeAlco(const QString &value);
 public slots:
     void companyChange(QString);
     void changeValue(int);
@@ -37,6 +39,8 @@ public:
     QSpinBox* volume;
     QSpinBox* volumeBottle;
     QLabel* per;
+
+
 
 private:
     AlcoLine data;

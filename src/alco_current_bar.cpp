@@ -58,7 +58,7 @@ void AlcoCurrentBar::on_Btn_Save_clicked()
         ++it;
     }
     saver->setMap(cur);*/
-    saver->reloadSave();
+    save();
 }
 
 void AlcoCurrentBar::readSaveFile() { reloadAlco(); }
@@ -88,3 +88,8 @@ AlcoTable* AlcoCurrentBar::addTable(const QString& name)
 void AlcoCurrentBar::on_pushButton_clicked() { }
 
 AlcoMap* AlcoCurrentBar::getCurrentMap() const { return saver->getMap(); }
+
+void AlcoCurrentBar::save()
+{
+    saver->reloadSave();
+}

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(AlcoMetr LANGUAGES CXX VERSION 0.1.1)
+project(AlcoMetr LANGUAGES CXX VERSION 1.0.0)
 
 
 set(CMAKE_CXX_STANDARD 11)
@@ -33,7 +33,8 @@ set(${PROJECT_NAME}_SRC
     src/alco_current_bar.cpp    
     src/alco_chose_item_widget.cpp    
     src/alco_coctails_save_worker.cpp    
-    src/alco_edit_base.cpp
+    src/alco_edit_base.cpp    
+    #src/alco_edit_base_alternatives.cpp
     )
 
 set(${PROJECT_NAME}_HDR	
@@ -48,7 +49,8 @@ set(${PROJECT_NAME}_HDR
     src/include/alco_current_bar.h
     src/include/alco_chose_item_widget.h
     src/include/alco_coctails_save_worker.h
-    src/include/alco_edit_base.h
+    src/include/alco_edit_base.h    
+    #src/include/alco_edit_base_alternatives.h
 )
 
 set(${PROJECT_NAME}_FORMS_UI
@@ -58,6 +60,7 @@ set(${PROJECT_NAME}_FORMS_UI
     gui/alco_current_bar.ui
     gui/alco_chose_item_widget.ui
     gui/alco_edit_base.ui
+    #gui/alco_edit_base_alternatives.ui
 )
 
 set(${PROJECT_NAME}_Qt_Resource_files

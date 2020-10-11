@@ -25,6 +25,7 @@ public:
     explicit AlcoCurrentBar(AlcoMap* map, QWidget* parent = nullptr);
     ~AlcoCurrentBar();
     AlcoMap* getCurrentMap() const;
+    void save();
 
 private slots:
     void on_Btn_Add_clicked();

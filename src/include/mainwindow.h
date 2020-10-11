@@ -11,6 +11,8 @@
 #include <QLineEdit>
 #include <QMainWindow>
 #include <QTableWidget>
+#include <QComboBox>
+#include <QMessageBox>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -27,6 +29,11 @@ public:
 
 private slots:
 
+    void showContextMenu(const QPoint &pos);
+
+    void changeItem();
+
+    void chooseItem(const QString& type, const QString& name);
 
     void on_Btn_OpenBar_clicked();
 
@@ -42,6 +49,10 @@ private slots:
 
     void on_Btn_EditBase_clicked();
 
+    void showCoctail();
+
+    void changeFirm(const QString& firm);
+
 private:
     Ui::MainWindow* ui;    
     AlcoBaseWorker* base;
@@ -50,6 +61,7 @@ private:
     AlcoCocktailManager* manager;
     AlcoEditBase* editBase;
     QList<AlcoCoctail>* listCoctails;
+    AlcoCoctail currentCoctail;
 
 };
 #endif // MAINWINDOW_H

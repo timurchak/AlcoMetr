@@ -23,7 +23,8 @@ AlcoEditBase::~AlcoEditBase() { delete ui; }
 QVBoxLayout* AlcoEditBase::addCategory(const QString& name, const AlcoList& list)
 {
     AlcoEditBaseItem* item = new AlcoEditBaseItem(name, list);
-    connect(item->w, &QListWidget::customContextMenuRequested, this, &AlcoEditBase::showContextMenu);
+    connect(
+        item->w, &QListWidget::customContextMenuRequested, this, &AlcoEditBase::showContextMenu);
 
     listCategory << item;
 
@@ -76,8 +77,8 @@ void AlcoEditBase::removeCategory()
         return;
     }
     AlcoEditBaseItem* searched;
-    for(auto& item : listCategory) {
-        if(item->w == list) {
+    for (auto& item : listCategory) {
+        if (item->w == list) {
             searched = item;
         }
     }

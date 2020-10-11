@@ -49,6 +49,16 @@ void AlcoItem::changeValue(int)
     per->setText(QString::number(perV) + " %");
 }
 
+QString AlcoItem::getTypeAlco() const
+{
+    return typeAlco;
+}
+
+void AlcoItem::setTypeAlco(const QString &value)
+{
+    typeAlco = value;
+}
+
 AlcoLine *AlcoItem::getData()
 {
     return &data;
@@ -56,10 +66,15 @@ AlcoLine *AlcoItem::getData()
 
 void AlcoItem::reloadData()
 {
+    QSignalBlocker blockerV(volume);
+    QSignalBlocker blockerVB(volumeBottle);
     company->setText(data.company);
     volume->setValue(data.volume);
     volumeBottle->setValue(data.volumeBottle);
     name->setText(data.name);
+    blockerV.unblock();
+    blockerVB.unblock();
+    changeValue(0);
 }
 
 QString AlcoItem::toString()

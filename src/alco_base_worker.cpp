@@ -25,7 +25,7 @@ void AlcoBaseWorker::readBase(const QString& name)
             auto line = ts.readLine();
             if (line.contains("==")) {
                 lastKey = line.remove("==");
-                mapAlco->insert(lastKey,AlcoList());
+                mapAlco->insert(lastKey, AlcoList());
                 continue;
             }
             if (lastKey.isEmpty()) {
@@ -53,7 +53,7 @@ void AlcoBaseWorker::readBase()
             auto line = ts.readLine();
             if (line.contains("==")) {
                 lastKey = line.remove("==");
-                mapAlco->insert(lastKey,AlcoList());
+                mapAlco->insert(lastKey, AlcoList());
                 continue;
             }
             if (lastKey.isEmpty()) {
@@ -74,13 +74,13 @@ void AlcoBaseWorker::readBase()
 void AlcoBaseWorker::saveBase()
 {
     QFile f(name);
-    if(f.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream ts(&f);
         ts.setCodec("Windows-1251");
         auto it = mapAlco->cbegin();
-        while(it != mapAlco->cend()) {
+        while (it != mapAlco->cend()) {
             ts << "==" << it.key() << "==" << Qt::endl;
-            for(const auto& item : qAsConst(it.value())) {
+            for (const auto& item : qAsConst(it.value())) {
                 ts << item->getData()->name << Qt::endl;
             }
             ++it;
