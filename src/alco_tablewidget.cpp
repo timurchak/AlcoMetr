@@ -21,12 +21,13 @@ AlcoTable::AlcoTable(const QString& type, QWidget* par)
     layOthers->addWidget(btnDelte);
     layMain->addLayout(layOthers);
     layMain->addWidget(table);
-    table->setColumnCount(5);
+    table->setColumnCount(6);
     table->setHorizontalHeaderLabels(QStringList() << "Название алкоголя"
                                                    << "Фирма производитель"
                                                    << "Текущий объем"
                                                    << "Объем бутылки"
-                                                   << "Доля остатка");
+                                                   << "Доля остатка"
+                                                   << "Не отслеживать?");
     table->resizeColumnsToContents();
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
     this->setLayout(layMain);
@@ -41,6 +42,13 @@ void AlcoTable::addItem(AlcoItem* item)
     table->setCellWidget(row, 2, item->volume);
     table->setCellWidget(row, 3, item->volumeBottle);
     table->setCellWidget(row, 4, item->per);
+    table->setCellWidget(row, 5, item->enable);
+    if(item->getData()->st) {
+        item->per->setText("0 %");
+    } else {
+        item->per->setText("100 %");
+    }
+
     table->resizeColumnsToContents();
     table->resizeRowsToContents();
     //table->setMinimumHeight((row + 1) * 30 + 40);

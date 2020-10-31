@@ -6,6 +6,7 @@
 #include <alco_current_bar.h>
 #include <alco_cocktail_manager.h>
 #include <alco_edit_base.h>
+#include <alco_use_coctails.h>
 
 #include <QLabel>
 #include <QLineEdit>
@@ -28,40 +29,27 @@ public:
     ~MainWindow();
 
 private slots:
+    void on_Btn_useCoctail_clicked();
 
-    void showContextMenu(const QPoint &pos);
+private slots:
 
-    void changeItem();
-
-    void chooseItem(const QString& type, const QString& name);
 
     void on_Btn_OpenBar_clicked();
 
-    void on_Btn_OpenCoctailManager_clicked();
-
-    void on_Btn_Chose_clicked();
-
-    void on_W_typeCoctail_currentIndexChanged(const QString &arg1);
-
-    void on_Btn_CreateCoctail_clicked();
-
-    int searchItem(AlcoItem* item);
+    void on_Btn_OpenCoctailManager_clicked(); 
 
     void on_Btn_EditBase_clicked();
-
-    void showCoctail();
-
-    void changeFirm(const QString& firm);
 
 private:
     Ui::MainWindow* ui;    
     AlcoBaseWorker* base;
     AlcoMap* allAlc;
     AlcoCurrentBar* bar;
-    AlcoCocktailManager* manager;
+    AlcoCoctailManager* manager;
     AlcoEditBase* editBase;
-    QList<AlcoCoctail>* listCoctails;
-    AlcoCoctail currentCoctail;
+    AlcoUseCoctails* useCoctails;
+
+
 
 };
 #endif // MAINWINDOW_H

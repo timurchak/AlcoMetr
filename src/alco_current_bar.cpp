@@ -25,7 +25,7 @@ AlcoCurrentBar::~AlcoCurrentBar() { delete ui; }
 void AlcoCurrentBar::on_Btn_Add_clicked()
 {
     QString type = ui->W_typeAlc->currentText();
-    auto item = new AlcoItem({ ui->W_choseAlc->currentText(), "", 0, 0 }, type);
+    auto item = new AlcoItem({ ui->W_choseAlc->currentText(), "", 0, 0 ,true}, type);
     if (!currentMap->contains(type)) {
         currentMap->operator[](type) = AlcoList();
     }

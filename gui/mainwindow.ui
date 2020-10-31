@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>179</width>
+    <height>116</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,108 +19,35 @@
      <number>2</number>
     </property>
     <item>
-     <layout class="QHBoxLayout" name="Lay_Btn">
-      <item>
-       <widget class="QPushButton" name="Btn_OpenBar">
-        <property name="text">
-         <string>Открыть Бар</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="Btn_OpenCoctailManager">
-        <property name="text">
-         <string>Открыть менеджер коктейлей</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="Btn_EditBase">
-        <property name="text">
-         <string>Редактировать базу напитков</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <widget class="Line" name="line">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-    </item>
-    <item>
-     <widget class="QLabel" name="label">
+     <widget class="QPushButton" name="Btn_useCoctail">
       <property name="text">
-       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;Сделать коктейль&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+       <string>Сделать коктейль</string>
       </property>
      </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="Lay_AlcoItems">
-      <item>
-       <widget class="QComboBox" name="W_typeCoctail"/>
-      </item>
-      <item>
-       <widget class="QComboBox" name="W_coctailName"/>
-      </item>
-      <item>
-       <widget class="QPushButton" name="Btn_Chose">
-        <property name="text">
-         <string>Выбрать</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     <widget class="QPushButton" name="Btn_OpenBar">
+      <property name="text">
+       <string>Открыть Бар</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="Lay_Table">
-      <item>
-       <widget class="QTableWidget" name="W_CoctailItems"/>
-      </item>
-      <item>
-       <layout class="QVBoxLayout" name="Lay_rightCoctail">
-        <item>
-         <widget class="QTextBrowser" name="W_About"/>
-        </item>
-        <item>
-         <widget class="QPushButton" name="Btn_CreateCoctail">
-          <property name="text">
-           <string>Сделать коктейль</string>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-     </layout>
+     <widget class="QPushButton" name="Btn_OpenCoctailManager">
+      <property name="text">
+       <string>Открыть менеджер коктейлей</string>
+      </property>
+     </widget>
     </item>
     <item>
-     <spacer name="verticalSpacer">
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
+     <widget class="QPushButton" name="Btn_EditBase">
+      <property name="text">
+       <string>Редактировать базу напитков</string>
       </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>20</width>
-        <height>40</height>
-       </size>
-      </property>
-     </spacer>
+     </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>800</width>
-     <height>22</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QStatusBar" name="statusbar"/>
  </widget>
  <resources/>
  <connections/>

@@ -1,7 +1,7 @@
 #include "alco_cocktail_manager.h"
 #include "ui_alco_cocktail_manager.h"
 
-AlcoCocktailManager::AlcoCocktailManager(AlcoMap *map, AlcoMap* cmap, QWidget* parent)
+AlcoCoctailManager::AlcoCoctailManager(AlcoMap *map, AlcoMap* cmap, QWidget* parent)
     : QWidget(parent)
     , ui(new Ui::AlcoCocktailManager)
     , alcoList(map)
@@ -21,9 +21,9 @@ AlcoCocktailManager::AlcoCocktailManager(AlcoMap *map, AlcoMap* cmap, QWidget* p
     reload();
 }
 
-AlcoCocktailManager::~AlcoCocktailManager() { delete ui; }
+AlcoCoctailManager::~AlcoCoctailManager() { delete ui; }
 
-QList<AlcoCoctail>* AlcoCocktailManager::getCoctailsList()
+QList<AlcoCoctail>* AlcoCoctailManager::getCoctailsList()
 {
     for (auto& coctail : list) {
         for (auto& item : coctail.items) {
@@ -33,9 +33,9 @@ QList<AlcoCoctail>* AlcoCocktailManager::getCoctailsList()
     return &list;
 }
 
-void AlcoCocktailManager::on_Btn_addCoctail_clicked() { showCreateCoctail(new AlcoCoctail({})); }
+void AlcoCoctailManager::on_Btn_addCoctail_clicked() { showCreateCoctail(new AlcoCoctail({})); }
 
-void AlcoCocktailManager::addCoctail(AlcoCoctail* _coctail)
+void AlcoCoctailManager::addCoctail(AlcoCoctail* _coctail)
 {
     if (!_coctail->valid) {
         list << *_coctail;
@@ -52,17 +52,17 @@ void AlcoCocktailManager::addCoctail(AlcoCoctail* _coctail)
     saver->saveList();
 }
 
-void AlcoCocktailManager::showCreateCoctail(AlcoCoctail* coctail)
+void AlcoCoctailManager::showCreateCoctail(AlcoCoctail* coctail)
 {
     AlcoCreateCoctailForm* form = new AlcoCreateCoctailForm(alcoList, coctail);
     form->show();
-    connect(form, &AlcoCreateCoctailForm::changeCoctail, this, &AlcoCocktailManager::addCoctail);
+    connect(form, &AlcoCreateCoctailForm::changeCoctail, this, &AlcoCoctailManager::addCoctail);
     // connect(form, &AlcoCreateCoctailForm::finished, this, &AlcoCreateCoctailForm::deleteLater);
 }
 
-void AlcoCocktailManager::saveAll() { saver->saveList(); }
+void AlcoCoctailManager::saveAll() { saver->saveList(); }
 
-void AlcoCocktailManager::reload()
+void AlcoCoctailManager::reload()
 {
     ui->Coctail_list->clear();
     for (auto item : list) {
@@ -70,7 +70,7 @@ void AlcoCocktailManager::reload()
     }
 }
 
-void AlcoCocktailManager::on_Coctail_list_doubleClicked(const QModelIndex& index)
+void AlcoCoctailManager::on_Coctail_list_doubleClicked(const QModelIndex& index)
 {
     if (list.count() < index.row()) {
         return;
@@ -79,7 +79,7 @@ void AlcoCocktailManager::on_Coctail_list_doubleClicked(const QModelIndex& index
     showCreateCoctail(&list[index.row()]);
 }
 
-void AlcoCocktailManager::on_pushButton_clicked()
+void AlcoCoctailManager::on_pushButton_clicked()
 {
     int index = ui->Coctail_list->currentRow();
     if (index >= 0) {

@@ -30,6 +30,7 @@ AlcoCreateCoctailForm::AlcoCreateCoctailForm(AlcoMap *map, AlcoCoctail* _coctail
     } else {
         ui->W_typeCoctail->setCurrentIndex(0);
     }
+    coctail->typeCoctail = ui->W_typeCoctail->currentText();
 }
 
 AlcoCreateCoctailForm::~AlcoCreateCoctailForm() { delete ui; }

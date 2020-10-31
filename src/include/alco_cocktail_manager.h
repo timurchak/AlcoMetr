@@ -11,12 +11,12 @@ namespace Ui {
 class AlcoCocktailManager;
 }
 
-class AlcoCocktailManager : public QWidget {
+class AlcoCoctailManager : public QWidget {
     Q_OBJECT
 
 public:
-    explicit AlcoCocktailManager(AlcoMap* map, AlcoMap* cmap, QWidget* parent = nullptr);
-    ~AlcoCocktailManager();
+    explicit AlcoCoctailManager(AlcoMap* map, AlcoMap* cmap, QWidget* parent = nullptr);
+    ~AlcoCoctailManager();
 
     QList<AlcoCoctail> *getCoctailsList();
 

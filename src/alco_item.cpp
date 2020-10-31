@@ -7,6 +7,7 @@ AlcoItem::AlcoItem(AlcoLine line, const QString& type, QObject* par)
     , volume(new QSpinBox)
     , volumeBottle(new QSpinBox)
     , per(new QLabel)
+    , enable(new QCheckBox)
     , data(line)
     , typeAlco(type)
 {
@@ -19,20 +20,31 @@ AlcoItem::AlcoItem(AlcoLine line, const QString& type, QObject* par)
     volume->setMaximumWidth(100);
     volumeBottle->setMaximumWidth(100);
     per->setAutoFillBackground(true);
+    enable->setText("Остлеживать");
+    enable->setChecked(data.st);
     connect(volume, QOverload<int>::of(&QSpinBox::valueChanged), this, &AlcoItem::changeValue);
     connect(volumeBottle, QOverload<int>::of(&QSpinBox::valueChanged), this, &AlcoItem::changeValue);
     connect(company, &QLineEdit::textChanged, this, &AlcoItem::companyChange);
+    connect(enable, &QCheckBox::clicked, this, &AlcoItem::clickEnable);
     name->setText(line.name);
     company->setText(line.company);
     volume->setValue(line.volume);
     volumeBottle->setValue(line.volumeBottle);
+    enable->setChecked(data.st);
+    volume->setEnabled(data.st);
+    volumeBottle->setEnabled(data.st);
     changeValue(0);
 }
 
 void AlcoItem::changeValue(int)
 {
+
     data.volume = volume->value();
     data.volumeBottle = volumeBottle->value();
+    data.st = enable->isChecked();
+    if(!data.st) {
+        return;
+    }
     if (volumeBottle->value() == 0) {
         return;
     }
@@ -47,6 +59,15 @@ void AlcoItem::changeValue(int)
         per->setStyleSheet("");
     }
     per->setText(QString::number(perV) + " %");
+}
+
+void AlcoItem::clickEnable(bool st)
+{
+    volume->setEnabled(st);
+    volumeBottle->setEnabled(st);
+    if(!st) {
+        per->setText("100 %");
+    }
 }
 
 QString AlcoItem::getTypeAlco() const
@@ -79,12 +100,13 @@ void AlcoItem::reloadData()
 
 QString AlcoItem::toString()
 {
-    return QString("%1|%2|%3|%4|%5\n")
+    return QString("%1|%2|%3|%4|%5|%6\n")
         .arg(typeAlco)
         .arg(data.name)
         .arg(data.company)
         .arg(data.volume)
-    .arg(data.volumeBottle);
+    .arg(data.volumeBottle)
+        .arg(enable->isChecked() ? "T" : "F");
 }
 
 QString AlcoItem::toShortString()

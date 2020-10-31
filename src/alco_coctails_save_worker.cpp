@@ -73,7 +73,7 @@ void AlcoCoctailsSaveWorker::readSave()
                     if (split.count() < 3) {
                         continue;
                     }
-                    coctail.items << new AlcoItem({ split[1], "", split[2].toInt(), 0 }, split[0]);
+                    coctail.items << new AlcoItem({ split[1], "", split[2].toInt(), 0 , true}, split[0]);
                 }
                 list->push_back(coctail);
             }

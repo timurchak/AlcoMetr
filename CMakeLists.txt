@@ -5,7 +5,10 @@ project(AlcoMetr LANGUAGES CXX VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-
+SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+SET(BUILD_SHARED_LIBS OFF)
+SET(CMAKE_EXE_LINKER_FLAGS "-static")
+set(CMAKE_RC_FLAGS —use-temp-file)
 
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Core REQUIRED)
@@ -33,8 +36,8 @@ set(${PROJECT_NAME}_SRC
     src/alco_current_bar.cpp    
     src/alco_chose_item_widget.cpp    
     src/alco_coctails_save_worker.cpp    
-    src/alco_edit_base.cpp    
-    #src/alco_edit_base_alternatives.cpp
+    src/alco_edit_base.cpp
+    src/alco_use_coctails.cpp
     )
 
 set(${PROJECT_NAME}_HDR	
@@ -50,7 +53,7 @@ set(${PROJECT_NAME}_HDR
     src/include/alco_chose_item_widget.h
     src/include/alco_coctails_save_worker.h
     src/include/alco_edit_base.h    
-    #src/include/alco_edit_base_alternatives.h
+    src/include/alco_use_coctails.h
 )
 
 set(${PROJECT_NAME}_FORMS_UI
@@ -60,7 +63,7 @@ set(${PROJECT_NAME}_FORMS_UI
     gui/alco_current_bar.ui
     gui/alco_chose_item_widget.ui
     gui/alco_edit_base.ui
-    #gui/alco_edit_base_alternatives.ui
+    gui/alco_use_coctails.ui
 )
 
 set(${PROJECT_NAME}_Qt_Resource_files
@@ -73,7 +76,7 @@ qt5_add_resources(${PROJECT_NAME}_RCCs ${${PROJECT_NAME}_Qt_Resource_files})
 
 set(TARGET_EXE ${PROJECT_NAME})
 
-add_executable(${TARGET_EXE} ${OS_EX_FLAG}    
+add_executable(${TARGET_EXE} WIN32 ${OS_EX_FLAG}
     ${${PROJECT_NAME}_QT_SOURCES}
     ${${PROJECT_NAME}_QT_HEADERS}
     ${${PROJECT_NAME}_UIs}
@@ -87,7 +90,7 @@ set_target_properties(${TARGET_EXE}
     VERSION ${${PROJECT_NAME}_VERSION}
     )	
 	
-target_link_libraries(${TARGET_EXE}
+target_link_libraries(${TARGET_EXE} -static
     ${QT_LIBRARIES} 
     ${${PROJECT_NAME}_OPT_LIBS}
     Qt5::Widgets

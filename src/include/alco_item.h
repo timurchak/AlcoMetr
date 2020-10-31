@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QSpinBox>
 #include <QTextStream>
+#include <QCheckBox>
 #include <string>
 
 struct AlcoLine {
@@ -17,6 +18,7 @@ struct AlcoLine {
     QString company;
     int volume;
     int volumeBottle;
+    bool st;
 };
 
 class AlcoItem : public QObject {
@@ -32,6 +34,8 @@ public:
 public slots:
     void companyChange(QString);
     void changeValue(int);
+private slots:
+    void clickEnable(bool st);
 
 public:
     QLabel* name;
@@ -39,6 +43,7 @@ public:
     QSpinBox* volume;
     QSpinBox* volumeBottle;
     QLabel* per;
+    QCheckBox* enable;
 
 
 

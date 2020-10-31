@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AlcoUseCoctails</class>
+ <widget class="QWidget" name="AlcoUseCoctails">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>554</width>
+    <height>407</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QComboBox" name="W_typeCoctail">
+     <property name="font">
+      <font>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QListWidget" name="W_listCoctails"/>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="Lay_Table">
+     <item>
+      <widget class="QTableWidget" name="W_CoctailItems"/>
+     </item>
+     <item>
+      <layout class="QVBoxLayout" name="Lay_rightCoctail">
+       <item>
+        <widget class="QTextBrowser" name="W_About"/>
+       </item>
+       <item>
+        <widget class="QPushButton" name="Btn_CreateCoctail">
+         <property name="text">
+          <string>Сделать коктейль</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
