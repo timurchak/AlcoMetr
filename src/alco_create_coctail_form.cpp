@@ -37,14 +37,14 @@ AlcoCreateCoctailForm::~AlcoCreateCoctailForm() { delete ui; }
 
 void AlcoCreateCoctailForm::addItem(const QString& type, const QString& name)
 {
-    AlcoItem* item = new AlcoItem({ name, "", 0, 0 }, type);
+    AlcoItem* item = new AlcoItem({ name, "", 0, 0, true}, type);
     addItem(item);
     // sender()->deleteLater();
     coctail->items << item;
 }
 
 void AlcoCreateCoctailForm::addItem(AlcoItem* item)
-{
+{    
     int row = ui->table->rowCount();
     ui->table->setRowCount(row + 1);
     ui->table->setCellWidget(row, 0, item->name);
