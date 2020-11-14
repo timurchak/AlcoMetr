@@ -1,0 +1,3 @@
+[submodule "ftpclient-cpp"]
+	path = ftpclient-cpp
+	url = https://github.com/embeddedmz/ftpclient-cpp
