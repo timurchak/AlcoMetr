@@ -44,7 +44,7 @@ void AlcoTable::addItem(AlcoItem* item)
     table->setCellWidget(row, 4, item->per);
     table->setCellWidget(row, 5, item->enable);
     if(item->getData()->st) {
-        item->per->setText("0 %");
+        //item->per->setText("0 %");
     } else {
         item->per->setText("100 %");
     }

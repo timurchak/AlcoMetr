@@ -1,6 +1,9 @@
 <!DOCTYPE RCC><RCC version="1.0">
  <qresource>
      <file>rsc/alco.list</file>
-     
+     <file>rsc/bar.png</file>
+     <file>rsc/base.png</file>
+     <file>rsc/coctail_edit.png</file>
+     <file>rsc/coctail_use.png</file>
  </qresource>
 </RCC>

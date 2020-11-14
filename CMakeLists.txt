@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(AlcoMetr LANGUAGES CXX VERSION 1.0.0)
+project(AlcoMetr LANGUAGES CXX VERSION 1.0.1)
 
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
-SET(BUILD_SHARED_LIBS OFF)
-SET(CMAKE_EXE_LINKER_FLAGS "-static")
+#SET(CMAKE_FIND_LIBRARY_SUFFIXES ".a")
+#SET(BUILD_SHARED_LIBS OFF)
+#SET(CMAKE_EXE_LINKER_FLAGS "-static")
 set(CMAKE_RC_FLAGS —use-temp-file)
 
 find_package(Qt5Widgets REQUIRED)
@@ -90,7 +90,7 @@ set_target_properties(${TARGET_EXE}
     VERSION ${${PROJECT_NAME}_VERSION}
     )	
 	
-target_link_libraries(${TARGET_EXE} -static
+target_link_libraries(${TARGET_EXE}
     ${QT_LIBRARIES} 
     ${${PROJECT_NAME}_OPT_LIBS}
     Qt5::Widgets

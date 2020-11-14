@@ -95,13 +95,13 @@ void AlcoUseCoctails::showCoctail()
         int valid = searchItem(item);
         switch (valid) {
         case -1:
-            itemVolume->setBackground(Qt::red);
+            itemVolume->setBackground(redColor);
             break;
         case 0:
-            itemVolume->setBackground(Qt::yellow);
+            itemVolume->setBackground(yellowColor);
             break;
         case 1:
-            itemVolume->setBackground(Qt::green);
+            itemVolume->setBackground(greenColor);
             break;
         default:
             break;
@@ -159,13 +159,13 @@ void AlcoUseCoctails::changeFirm(const QString& firm)
             int valid = searchItem(currentCoctail.items[r]);
             switch (valid) {
             case -1:
-                item->setBackground(Qt::red);
+                item->setBackground(redColor);
                 break;
             case 0:
-                item->setBackground(Qt::yellow);
+                item->setBackground(yellowColor);
                 break;
             case 1:
-                item->setBackground(Qt::green);
+                item->setBackground(greenColor);
                 break;
             default:
                 break;
@@ -245,7 +245,7 @@ void AlcoUseCoctails::on_W_typeCoctail_currentIndexChanged(int index)
     while (it != listCoctails->end()) {
         if (it->typeCoctail == ui->W_typeCoctail->itemText(index)) {
             QListWidgetItem* item = new QListWidgetItem(it->name);
-            QFont font("Times", 14);
+            QFont font(item->font().family(), 14);
             // int valid = 1;
             QVector<int> valid(it->items.count());
             int i = 0;
@@ -256,9 +256,9 @@ void AlcoUseCoctails::on_W_typeCoctail_currentIndexChanged(int index)
             int bedVal = valid.count(-1);
             int goodVal = valid.count(0) + valid.count(1);
             if (bedVal > goodVal) {
-                item->setBackground(Qt::red);
+                item->setBackground(redColor);
             } else {
-                item->setBackground(Qt::green);
+                item->setBackground(greenColor);
             }
             item->setFont(font);
             ui->W_listCoctails->addItem(item);

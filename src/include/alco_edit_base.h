@@ -5,6 +5,7 @@
 #include <QMenu>
 #include <QVBoxLayout>
 #include <QWidget>
+#include <QMessageBox>
 
 #include <alco_item.h>
 #include <alco_base_worker.h>

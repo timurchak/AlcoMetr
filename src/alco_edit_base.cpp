@@ -71,7 +71,7 @@ void AlcoEditBase::removeItem()
 }
 
 void AlcoEditBase::removeCategory()
-{
+{    
     QListWidget* list = qobject_cast<QListWidget*>(focusWidget());
     if (list == nullptr) {
         return;
@@ -81,6 +81,12 @@ void AlcoEditBase::removeCategory()
         if (item->w == list) {
             searched = item;
         }
+    }
+    int ret = QMessageBox::warning(this, "Предупрждение о удаление категории",
+        "Вы действительно хотите удалить всю категорию " + searched->catName->text(),
+        QMessageBox::Yes | QMessageBox::No);
+    if(ret == QMessageBox::No) {
+        return;
     }
     listCategory.removeOne(searched);
     searched->w->deleteLater();

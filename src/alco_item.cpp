@@ -20,7 +20,7 @@ AlcoItem::AlcoItem(AlcoLine line, const QString& type, QObject* par)
     volume->setMaximumWidth(100);
     volumeBottle->setMaximumWidth(100);
     per->setAutoFillBackground(true);
-    enable->setText("Остлеживать");
+    enable->setText("Отслеживать");
     enable->setChecked(data.st);
     connect(volume, QOverload<int>::of(&QSpinBox::valueChanged), this, &AlcoItem::changeValue);
     connect(volumeBottle, QOverload<int>::of(&QSpinBox::valueChanged), this, &AlcoItem::changeValue);

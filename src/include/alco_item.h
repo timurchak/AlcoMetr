@@ -1,18 +1,21 @@
 #ifndef ALCOITEM_H
 #define ALCOITEM_H
 
+#include <QCheckBox>
 #include <QLabel>
 #include <QLineEdit>
 #include <QObject>
 #include <QSpinBox>
 #include <QTextStream>
-#include <QCheckBox>
 #include <string>
-
+const QColor yellowColor(238, 255, 77);
+const QColor redColor(182, 11, 6);
+const QColor greenColor(71, 177, 71);
 struct AlcoLine {
     /*QString toString(const QString& type) const
     {
-        return QString("%1|%2|%3|%4|%5\n").arg(type).arg(name).arg(company).arg(volume).arg(volumeBottle);
+        return
+    QString("%1|%2|%3|%4|%5\n").arg(type).arg(name).arg(company).arg(volume).arg(volumeBottle);
     }*/
     QString name;
     QString company;
@@ -30,7 +33,7 @@ public:
     AlcoLine* getData();
     void reloadData();
     QString getTypeAlco() const;
-    void setTypeAlco(const QString &value);
+    void setTypeAlco(const QString& value);
 public slots:
     void companyChange(QString);
     void changeValue(int);
@@ -44,8 +47,6 @@ public:
     QSpinBox* volumeBottle;
     QLabel* per;
     QCheckBox* enable;
-
-
 
 private:
     AlcoLine data;
@@ -62,7 +63,10 @@ struct AlcoCoctail {
     QString about;
     QString typeCoctail;
     bool valid = false;
-    friend bool operator==(const AlcoCoctail& lhs, const AlcoCoctail& rhs) { return lhs.name == rhs.name; }
+    friend bool operator==(const AlcoCoctail& lhs, const AlcoCoctail& rhs)
+    {
+        return lhs.name == rhs.name;
+    }
     QStringList toString()
     {
         QStringList list;
@@ -72,7 +76,7 @@ struct AlcoCoctail {
         list << "count items: " + QString::number(items.count()) + "\n";
         for (auto const& item : qAsConst(items)) {
             list << item->toShortString();
-        }        
+        }
         return list;
     }
 };
