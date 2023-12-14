@@ -13,7 +13,7 @@
 
 class AlcoBaseWorker {
 public:
-    AlcoBaseWorker(const QString& _name = QStandardPaths::standardLocations(QStandardPaths::DataLocation).first()
+    AlcoBaseWorker(const QString& _name = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).first()
                                          + QDir().separator() + "alco.list");
     void readBase(const QString &name);
 

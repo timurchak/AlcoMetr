@@ -39,18 +39,6 @@ void MainWindow::on_Btn_OpenCoctailManager_clicked()
     }
 }
 
-/*void MainWindow::on_W_typeCoctail_currentIndexChanged(const QString& arg1)
-{
-    ui->W_coctailName->clear();
-    auto it = listCoctails->begin();
-    while (it != listCoctails->end()) {
-        if (it->typeCoctail == arg1) {
-            ui->W_coctailName->addItem(it->name);
-        }
-        ++it;
-    }
-}*/
-
 void MainWindow::on_Btn_EditBase_clicked()
 {
     if (editBase->isHidden()) {

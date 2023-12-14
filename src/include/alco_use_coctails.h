@@ -37,14 +37,12 @@ public:
     void changeFirm(const QString& firm);
 
 private slots:
-    void on_W_typeCoctail_currentIndexChanged(int index);
-
-private slots:
     void on_W_listCoctails_itemClicked(QListWidgetItem* item);
 
-private slots:
-
     void on_Btn_CreateCoctail_clicked();
+
+
+    void on_W_typeCoctail_currentIndexChanged(int index);
 
 private:
     Ui::AlcoUseCoctails* ui;

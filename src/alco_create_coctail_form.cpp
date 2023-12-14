@@ -75,7 +75,8 @@ void AlcoCreateCoctailForm::on_W_name_textChanged(const QString& arg1) { coctail
 
 void AlcoCreateCoctailForm::on_textEdit_textChanged() { coctail->about = ui->textEdit->toPlainText(); }
 
-void AlcoCreateCoctailForm::on_W_typeCoctail_currentIndexChanged(const QString& arg1)
+void AlcoCreateCoctailForm::on_W_typeCoctail_currentTextChanged(const QString &arg1)
 {
     coctail->typeCoctail = arg1;
 }
+

@@ -20,7 +20,7 @@ public:
 private slots:
     void on_Btn_Ok_clicked();
 
-    void on_W_typeAlco_currentIndexChanged(const QString &arg1);
+    void on_W_typeAlco_currentTextChanged(const QString &arg1);
 
 private:
     Ui::AlcoChoseItemWidget *ui;

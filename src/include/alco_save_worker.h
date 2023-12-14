@@ -5,7 +5,6 @@
 #include <QDir>
 #include <QFile>
 #include <QStandardPaths>
-#include <QTextCodec>
 #include <QTextStream>
 #include <alco_item.h>
 
@@ -13,7 +12,7 @@ class AlcoSaveWorker : public QObject {
     Q_OBJECT
 public:
     AlcoSaveWorker(
-        const QString& name = QStandardPaths::standardLocations(QStandardPaths::DataLocation).first()
+        const QString& name = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).first()
             + QDir().separator() + "currentBar.save",
         QObject* par = nullptr);
     void reloadSave();

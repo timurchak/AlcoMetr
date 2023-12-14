@@ -19,7 +19,7 @@ void AlcoBaseWorker::readBase(const QString& name)
     QFile f(name);
     if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream ts(&f);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::Utf8);
         QString lastKey = "";
         while (!ts.atEnd()) {
             auto line = ts.readLine();
@@ -47,7 +47,7 @@ void AlcoBaseWorker::readBase()
 {
     if (base->open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream ts(base);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::Utf8);
         QString lastKey = "";
         while (!ts.atEnd()) {
             auto line = ts.readLine();
@@ -76,11 +76,11 @@ void AlcoBaseWorker::saveBase()
     QFile f(name);
     if (f.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream ts(&f);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::Utf8);
         auto it = mapAlco->cbegin();
         while (it != mapAlco->cend()) {
             ts << "==" << it.key() << "==" << Qt::endl;
-            for (const auto& item : qAsConst(it.value())) {
+            for (const auto& item : std::as_const(it.value())) {
                 ts << item->getData()->name << Qt::endl;
             }
             ++it;

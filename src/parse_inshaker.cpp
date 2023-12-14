@@ -19,7 +19,7 @@ QMap<QString, QStringList> ParseInShaker::parseHTML(const QString& path)
         while (!reader.atEnd()) {
             reader.readNext();
             if (reader.isStartElement()) {
-                if (reader.name() == "body") {
+                if (reader.name().compare("body") == 0) {
                     qDebug() << reader.name() << "search body, start:";
                     if (parseHTMLElement("body", "div", "id", "main", &reader)) {
                         qDebug() << reader.name() << "search div id main, start:";
@@ -88,15 +88,15 @@ QStringList ParseInShaker::parseHTMLGroup(QXmlStreamReader* reader)
     while (!reader->atEnd()) {
         reader->readNext();
         if (reader->isEndElement()) {
-            if (reader->name() == "ul") {
+            if (reader->name().compare("ul") == 0) {
                 return list;
             }
         }
         if (reader->isStartElement()) {
-            if (reader->name() == "li") {
+            if (reader->name().compare("li") == 0) {
                 while (!reader->atEnd()) {
                     reader->readNext();
-                    if (reader->name() == "div" && reader->attributes().value("class") == "name") {
+                    if (reader->name().compare("div") == 0 && reader->attributes().value("class").compare("name")== 0) {
                         list << reader->readElementText();
                         break;
                     }
@@ -157,7 +157,7 @@ void ParseInShaker::save(QMap<QString, QStringList>& map)
     QFile file("alco.list");
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream ts(&file);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::System);
         auto it = map.begin();
         while (it != map.end()) {
             ts << "==" + it.key() + "==" << Qt::endl;

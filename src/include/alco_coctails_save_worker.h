@@ -12,7 +12,7 @@
 class AlcoCoctailsSaveWorker {
 public:
     AlcoCoctailsSaveWorker(
-        const QString& name = QStandardPaths::standardLocations(QStandardPaths::DataLocation).first()
+        const QString& name = QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).first()
             + QDir().separator() + "coctails.save");
     void setList(QList<AlcoCoctail>* value);
     void readSave();

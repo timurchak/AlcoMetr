@@ -68,13 +68,13 @@ void AlcoUseCoctails::chooseItem(const QString& type, const QString& name)
 void AlcoUseCoctails::showCoctail()
 {
     ui->W_CoctailItems->setRowCount(0);
-    for (auto const& item : qAsConst(currentCoctail.items)) {
+    for (auto const& item : std::as_const(currentCoctail.items)) {
         int row = ui->W_CoctailItems->rowCount();
         ui->W_CoctailItems->setRowCount(row + 1);
         auto itemName = new QTableWidgetItem(item->getData()->name);
         auto itemVolume = new QTableWidgetItem(QString::number(item->getData()->volume));
         auto firm = new QComboBox;
-        connect(firm, QOverload<const QString&>::of(&QComboBox::currentIndexChanged), this,
+        connect(firm, &QComboBox::currentTextChanged, this,
             &AlcoUseCoctails::changeFirm);
         firm->setStyleSheet(firm->styleSheet() + "QComboBox { background-color: white; }");
         QStringList firmsCurrentBar;
@@ -238,6 +238,7 @@ void AlcoUseCoctails::on_W_listCoctails_itemClicked(QListWidgetItem* item)
     showCoctail();
 }
 
+
 void AlcoUseCoctails::on_W_typeCoctail_currentIndexChanged(int index)
 {
     ui->W_listCoctails->clear();
@@ -249,7 +250,7 @@ void AlcoUseCoctails::on_W_typeCoctail_currentIndexChanged(int index)
             // int valid = 1;
             QVector<int> valid(it->items.count());
             int i = 0;
-            for (auto const& item : qAsConst(it->items)) {
+            for (auto const& item : std::as_const(it->items)) {
                 valid[i] = searchItem(item);
                 i++;
             }
@@ -266,3 +267,4 @@ void AlcoUseCoctails::on_W_typeCoctail_currentIndexChanged(int index)
         ++it;
     }
 }
+

@@ -74,7 +74,7 @@ struct AlcoCoctail {
         list << "about: " + about + "\n";
         list << "typeCoctail: " + typeCoctail + "\n";
         list << "count items: " + QString::number(items.count()) + "\n";
-        for (auto const& item : qAsConst(items)) {
+        for (auto const& item : std::as_const(items)) {
             list << item->toShortString();
         }
         return list;

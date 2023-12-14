@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QDir().mkpath(QStandardPaths::standardLocations(QStandardPaths::DataLocation).first());
+    QDir().mkpath(QStandardPaths::standardLocations(QStandardPaths::AppDataLocation).first());
     MainWindow w;
     w.show();
     return a.exec();

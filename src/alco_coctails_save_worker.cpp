@@ -13,7 +13,7 @@ void AlcoCoctailsSaveWorker::readSave()
 {
     if (save->open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream ts(save);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::Utf8);
         list->clear();
         while (!ts.atEnd()) {
             QString start = ts.readLine();
@@ -86,11 +86,11 @@ void AlcoCoctailsSaveWorker::saveList()
 {
     if (save->open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream ts(save);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::Utf8);
         auto it = list->begin();
         while (it != list->end()) {
             auto strList = it->toString();
-            for (auto const& item : qAsConst(strList)) {
+            for (auto const& item : std::as_const(strList)) {
                 ts << item;
             }
             ++it;

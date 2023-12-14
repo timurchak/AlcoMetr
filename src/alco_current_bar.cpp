@@ -38,16 +38,6 @@ void AlcoCurrentBar::on_Btn_Add_clicked()
     tables[type]->addItem(item);
 }
 
-void AlcoCurrentBar::on_W_typeAlc_currentIndexChanged(const QString& arg1)
-{
-    if (alcoList->contains(arg1)) {
-        ui->W_choseAlc->clear();
-        for (auto& item : alcoList->value(arg1)) {
-            ui->W_choseAlc->addItem(item->getData()->name);
-        }
-    }
-}
-
 void AlcoCurrentBar::on_Btn_Save_clicked()
 {
     /*AlcoMap cur;
@@ -93,3 +83,14 @@ void AlcoCurrentBar::save()
 {
     saver->reloadSave();
 }
+
+void AlcoCurrentBar::on_W_typeAlc_currentTextChanged(const QString &arg1)
+{
+    if (alcoList->contains(arg1)) {
+        ui->W_choseAlc->clear();
+        for (auto& item : alcoList->value(arg1)) {
+            ui->W_choseAlc->addItem(item->getData()->name);
+        }
+    }
+}
+

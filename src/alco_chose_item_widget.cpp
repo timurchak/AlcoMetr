@@ -25,7 +25,7 @@ void AlcoChoseItemWidget::on_Btn_Ok_clicked()
     this->close();
 }
 
-void AlcoChoseItemWidget::on_W_typeAlco_currentIndexChanged(const QString &arg1)
+void AlcoChoseItemWidget::on_W_typeAlco_currentTextChanged(const QString &arg1)
 {
     if (alcoList->contains(arg1)) {
         ui->W_nameAlco->clear();
@@ -34,3 +34,4 @@ void AlcoChoseItemWidget::on_W_typeAlco_currentIndexChanged(const QString &arg1)
         }
     }
 }
+

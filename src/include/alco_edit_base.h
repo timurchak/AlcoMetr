@@ -26,7 +26,7 @@ struct AlcoEditBaseItem {
         lay->addWidget(catName);
         lay->addWidget(w);
         catName->setText(name);
-        for (const auto& item : qAsConst(list)) {
+        for (const auto& item : std::as_const(list)) {
             QListWidgetItem* witem = new QListWidgetItem(item->getData()->name);
             witem->setFlags(witem->flags () | Qt::ItemIsEditable);
             w->addItem(witem);

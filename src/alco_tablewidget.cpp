@@ -73,7 +73,7 @@ void AlcoTable::deleteRow()
 
 void AlcoTable::reload()
 {
-    for (auto const& item : *qAsConst(data)) {
+    for (auto const& item : *std::as_const(data)) {
         addItem(item);
     }
 }

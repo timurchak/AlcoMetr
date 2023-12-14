@@ -12,10 +12,10 @@ void AlcoSaveWorker::reloadSave()
 {
     if (save->open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream ts(save);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::Utf8);
         auto it = map.begin();
         while (it != map.end()) {
-            for (auto const& item : qAsConst(it.value())) {
+            for (auto const& item : std::as_const(it.value())) {
                 ts << item->toString();
             }
             ++it;
@@ -28,7 +28,7 @@ void AlcoSaveWorker::readSave()
 {
     if (save->open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream ts(save);
-        ts.setCodec("Windows-1251");
+        ts.setEncoding(QStringConverter::Utf8);
         map.clear();
         while (!ts.atEnd()) {
             QString str = ts.readLine();

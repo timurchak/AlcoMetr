@@ -30,8 +30,6 @@ public:
 private slots:
     void on_Btn_Add_clicked();
 
-    void on_W_typeAlc_currentIndexChanged(const QString& arg1);
-
     void on_Btn_Save_clicked();
 
     void readSaveFile();
@@ -41,6 +39,8 @@ private slots:
     AlcoTable* addTable(const QString& name);
 
     void on_pushButton_clicked();
+
+    void on_W_typeAlc_currentTextChanged(const QString &arg1);
 
 private:
     Ui::AlcoCurrentBar* ui;

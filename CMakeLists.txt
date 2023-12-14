@@ -10,16 +10,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #SET(CMAKE_EXE_LINKER_FLAGS "-static")
 set(CMAKE_RC_FLAGS —use-temp-file)
 
-find_package(Qt5Widgets REQUIRED)
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Network REQUIRED)
-find_package(QTimWidgets REQUIRED)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Core Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Core Network)
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/gui
     ${CMAKE_CURRENT_SOURCE_DIR}/src/include
-    $<TARGET_PROPERTY:QTimWidgets,INTERFACE_INCLUDE_DIRECTORIES>
     ${QT_INCLUDES}    
     ${${PROJECT_NAME}_OPT_INCLUDE_DIRS}    
     )
@@ -38,6 +35,7 @@ set(${PROJECT_NAME}_SRC
     src/alco_coctails_save_worker.cpp    
     src/alco_edit_base.cpp
     src/alco_use_coctails.cpp
+    src/qdynamicgridlayout.cpp
     )
 
 set(${PROJECT_NAME}_HDR	
@@ -54,6 +52,7 @@ set(${PROJECT_NAME}_HDR
     src/include/alco_coctails_save_worker.h
     src/include/alco_edit_base.h    
     src/include/alco_use_coctails.h
+    src/include/qdynamicgridlayout.h
 )
 
 set(${PROJECT_NAME}_FORMS_UI
@@ -70,9 +69,9 @@ set(${PROJECT_NAME}_Qt_Resource_files
     resources.qrc
     ${${PROJECT_NAME}_Qt_Resource_files})
 
-qt5_wrap_ui(${PROJECT_NAME}_UIs ${${PROJECT_NAME}_FORMS_UI})
-qt5_wrap_cpp(${PROJECT_NAME}_MOCs ${${PROJECT_NAME}_HDR})
-qt5_add_resources(${PROJECT_NAME}_RCCs ${${PROJECT_NAME}_Qt_Resource_files})
+qt6_wrap_ui(${PROJECT_NAME}_UIs ${${PROJECT_NAME}_FORMS_UI})
+qt6_wrap_cpp(${PROJECT_NAME}_MOCs ${${PROJECT_NAME}_HDR})
+qt6_add_resources(${PROJECT_NAME}_RCCs ${${PROJECT_NAME}_Qt_Resource_files})
 
 set(TARGET_EXE ${PROJECT_NAME})
 
@@ -93,8 +92,7 @@ set_target_properties(${TARGET_EXE}
 target_link_libraries(${TARGET_EXE}
     ${QT_LIBRARIES} 
     ${${PROJECT_NAME}_OPT_LIBS}
-    Qt5::Widgets
-    Qt5::Core       
-    Qt5::Network
-    QTimWidgets
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Core
+    Qt${QT_VERSION_MAJOR}::Network
     )
